@@ -30,16 +30,16 @@ drop_prob_2 = 0.5 # dropout in the FC layer with probability 0.5
 hidden_size = 128 # the FC layer will have 512 neurons
 
 
-
-X_train = np.load("/Users/Shane/PycharmProjects/BDL/cifar10/all_data/X_train.npy")
-X_test = np.load("/Users/Shane/PycharmProjects/BDL/cifar10/all_data/X_test.npy")
-y_train = np.load("/Users/Shane/PycharmProjects/BDL/cifar10/all_data/y_train.npy")
-y_test = np.load("/Users/Shane/PycharmProjects/BDL/cifar10/all_data/y_test.npy")
+# Need to insert data paths here
+X_train = np.load("Data/X_train.npy")
+X_test = np.load("/Data/X_test.npy")
+y_train = np.load("/Data/y_train.npy")
+y_test = np.load("/Datay_test.npy")
 
 num_train, height, width, depth = X_train.shape # there are 50000 training examples in CIFAR-10
 
+# Use a random sample for testing
 rand_inc_train = random.sample(range(num_train), k = 10000)
-#rand_inc_test = random.choices(range(num_test), k = 5000)
 
 X_train = X_train[rand_inc_train]
 y_train = y_train[rand_inc_train]
@@ -60,7 +60,7 @@ Y_train = np_utils.to_categorical(y_train, num_classes) # One-hot encode the lab
 Y_test = np_utils.to_categorical(y_test, num_classes) # One-hot encode the labels
 
 
-
+# set parameters
 N = X_train.shape[0]
 dropout = 0.5
 batch_size = 64
@@ -70,6 +70,8 @@ reg = lengthscale ** 2 * (1 - dropout) / (2. * N * tau)
 
 #s the dataset is balanced across the ten classes); - We hold out 10% of the data for validation purposes.
 
+
+### Model
 inp = Input(shape=(height, width, depth)) # depth goes last in TensorFlow back-end (first in Theano)
 # Conv [32] -> Conv [32] -> Pool (with dropout on the pooling layer)
 conv_1 = Convolution2D(conv_depth_1, (kernel_size, kernel_size), padding='same', activation='relu')(inp)
@@ -106,7 +108,7 @@ model.evaluate(X_test, Y_test, verbose=1)  # Evaluate the trained model on the t
 print("Generating standard predictions...")
 standard_pred = model.predict(X_test, batch_size=batch_size, verbose=1)
 
-# Inspired by Yarin Gal
+# Imolement dropout uncertainty
 T = 25
 predict_stochastic = K.function([model.layers[0].input, K.learning_phase()], [model.layers[-1].output])
 
