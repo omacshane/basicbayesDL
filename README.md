@@ -1,5 +1,5 @@
 # basicbayesDL
-Basic Bayesian Deep Learning
+**Basic Bayesian Deep Learning**
 
 These scripts present a basic implemention of a Bayesian Convolutional Deep Network in Keras based upon
 "Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning" (2015)
@@ -16,10 +16,10 @@ approximation.
 
 ## Get Started
 
-The jupyter [notebook](notebooks/run_bbdl_experiment.ipynb) has provides a quick setup for running some experiments on the CIFAR-10 dataset, 
+The jupyter [notebook](/notebooks/run_bbdl_experiment.ipynb) has provides a quick setup for running some experiments on the CIFAR-10 dataset, 
 comparing MC Dropout to a standard CNN model.
 
-![PRCurve](class8.jpg)
+![PRCurve](/notebooks/class8.png)
 
 
 [1] https://arxiv.org/abs/1506.02142
