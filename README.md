@@ -19,7 +19,7 @@ approximation.
 The jupyter [notebook](notebooks/run_bbdl_experiment.ipynb) has provides a quick setup for running some experiments on the CIFAR-10 dataset, 
 comparing MC Dropout to a standard CNN model.
 
-![PRCurve](notebooks/class8.jpg)
+![PRCurve](class8.jpg)
 
 
 [1] https://arxiv.org/abs/1506.02142
