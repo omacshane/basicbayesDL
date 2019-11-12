@@ -3,7 +3,7 @@ model_parameters = {
     "batch_size": 64,
     "tau": 0.5,
     "lengthscale": 1e-2,
-    "num_epochs": 1,
+    "num_epochs": 20,
     "kernel_size": 3,
     "pool_size": 2,
     "conv_depth_1": 32,

@@ -4,6 +4,7 @@ import numpy as np
 import time
 
 import keras.backend as K
+from keras.callbacks import EarlyStopping
 
 sys.path.append('..')
 sys.path.append('.')
@@ -58,11 +59,18 @@ def train_model(n_data_samples=N_SAMPLES,
                   optimizer='adam',
                   metrics=['accuracy'])
 
+    es = EarlyStopping(monitor='val_loss',
+                       min_delta=0,
+                       patience=2,
+                       verbose=1, mode='auto',
+                       restore_best_weights=True)
+
     model.fit(X_train, Y_train,
               batch_size=batch_size,
               epochs=num_epochs,
               verbose=1,
-              validation_split=0.1)
+              validation_split=0.1,
+              callbacks=[es])
 
     print("Evaluating Model...")
     model.evaluate(X_test, Y_test, verbose=1)
@@ -80,8 +88,8 @@ def train_model(n_data_samples=N_SAMPLES,
     start_time = time.time()
     Yt_hat = np.array([predict_stochastic([X_test, 1]) for _ in range(n_monte_carlo_samples)])
     end_time = time.time()
-    print("Took this amount of seconds:")
-    print(end_time - start_time)
+    print("Took this amount of minutes:")
+    print((end_time - start_time)/60)
 
     print("Saving predictions")
     np.save("ten_sims", Yt_hat)
@@ -103,5 +111,5 @@ def train_model(n_data_samples=N_SAMPLES,
         stoch_preds.at[i, 8] = Yt_hat[:, 0, i, 8].mean()
         stoch_preds.at[i, 9] = Yt_hat[:, 0, i, 9].mean()
 
-    return y_test, prediction_df, stoch_preds
+    return y_test, prediction_df, stoch_preds, Yt_hat
 

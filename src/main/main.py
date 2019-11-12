@@ -27,7 +27,7 @@ def run_single_experiment(data_samples=1000,
 
     """
 
-    y_test, prediction_df, stochastic_predictions = train_model(n_data_samples=data_samples,
+    y_test, prediction_df, stochastic_predictions, Yt_hat = train_model(n_data_samples=data_samples,
                                        n_monte_carlo_samples=monte_carlo_samples)
 
     y_true = pd.Series([int(x)  for x in y_test])
@@ -56,7 +56,7 @@ def run_single_experiment(data_samples=1000,
     print("Average Bayesian precision on Class {}: {}".format(default_class,
                                                               stochastic_ap))
 
-    return y_true, prediction_df, stochastic_predictions
+    return y_true, prediction_df, stochastic_predictions, Yt_hat
 
 
 
