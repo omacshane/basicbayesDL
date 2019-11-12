@@ -1,8 +1,6 @@
 # model based on this tutorial on CNNs in Keras:
 # https://cambridgespark.com/content/tutorials/convolutional-neural-networks-with-keras/index.html,
 
-as well as
-
 import sys
 from keras.models import Model
 from keras.layers import Input, Convolution2D, MaxPooling2D
@@ -54,7 +52,7 @@ def create_model(height,
     reg = lengthscale ** 2 * (1 - dropout) / (2. * N * tau)  # from paper
 
     ### Model
-    # @ convolutional layers  and two dense layers
+    # 2 convolutional layers  and two dense layers
     inp = Input(shape=(height, width, depth)) # depth goes last in TensorFlow
     conv_1 = Convolution2D(conv_depth_1, (kernel_size, kernel_size),
                            padding='same',

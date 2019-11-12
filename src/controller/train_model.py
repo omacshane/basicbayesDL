@@ -92,16 +92,16 @@ def train_model(n_data_samples=N_SAMPLES,
 
     print("Calculating means etc...")
     for i in range(len(X_test)):
-        stoch_preds.set_value(index=i, col=0, value=Yt_hat[:, 0, i, 0].mean())
-        stoch_preds.set_value(index=i, col=1, value=Yt_hat[:, 0, i, 1].mean())
-        stoch_preds.set_value(index=i, col=2, value=Yt_hat[:, 0, i, 2].mean())
-        stoch_preds.set_value(index=i, col=3, value=Yt_hat[:, 0, i, 3].mean())
-        stoch_preds.set_value(index=i, col=4, value=Yt_hat[:, 0, i, 4].mean())
-        stoch_preds.set_value(index=i, col=5, value=Yt_hat[:, 0, i, 5].mean())
-        stoch_preds.set_value(index=i, col=6, value=Yt_hat[:, 0, i, 6].mean())
-        stoch_preds.set_value(index=i, col=7, value=Yt_hat[:, 0, i, 7].mean())
-        stoch_preds.set_value(index=i, col=8, value=Yt_hat[:, 0, i, 8].mean())
-        stoch_preds.set_value(index=i, col=9, value=Yt_hat[:, 0, i, 9].mean())
+        stoch_preds.at[i, 0] = Yt_hat[:, 0, i, 0].mean()
+        stoch_preds.at[i, 1] = Yt_hat[:, 0, i, 1].mean()
+        stoch_preds.at[i, 2] = Yt_hat[:, 0, i, 2].mean()
+        stoch_preds.at[i, 3] = Yt_hat[:, 0, i, 3].mean()
+        stoch_preds.at[i, 4] = Yt_hat[:, 0, i, 4].mean()
+        stoch_preds.at[i, 5] = Yt_hat[:, 0, i, 5].mean()
+        stoch_preds.at[i, 6] = Yt_hat[:, 0, i, 6].mean()
+        stoch_preds.at[i, 7] = Yt_hat[:, 0, i, 7].mean()
+        stoch_preds.at[i, 8] = Yt_hat[:, 0, i, 8].mean()
+        stoch_preds.at[i, 9] = Yt_hat[:, 0, i, 9].mean()
 
     return y_test, prediction_df, stoch_preds
 
