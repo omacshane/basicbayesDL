@@ -24,8 +24,8 @@ def train_model(n_data_samples=N_SAMPLES,
     """
 
     Args:
-        n_data_samples:
-        n_monte_carlo_samples:
+        n_data_samples: number of datas amples to use in training
+        n_monte_carlo_samples: number of MC dropout iterations at test time
 
     Returns:
         y_test:

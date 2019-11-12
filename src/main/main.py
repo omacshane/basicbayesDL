@@ -21,6 +21,9 @@ def run_single_experiment(data_samples=1000,
         default_class: (int) return AP scores for this class
 
     Returns:
+        y_true: ground ruth class labels
+        prediction_df: pandas dataframe of 'deterministic' predictions
+        stochastic_predictions: pandas dataframe of mean posterior predictions
 
     """
 

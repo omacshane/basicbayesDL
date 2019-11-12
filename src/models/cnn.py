@@ -35,19 +35,21 @@ def create_model(height,
     """
 
     Args:
-        height:
-        width:
-        depth:
-        num_classes:
-        N:
+        height: number pixels along y axis
+        width: number pixels along x axis
+        depth: number of channels
+        num_classes: number of target classes
+        N: number of training observations
 
     Returns:
+        model: a Keras model
 
     """
 
     reg = lengthscale ** 2 * (1 - dropout) / (2. * N * tau)  # from paper
 
     ### Model
+    # @ convolutional layers  and two dense layers
     inp = Input(shape=(height, width, depth)) # depth goes last in TensorFlow
     conv_1 = Convolution2D(conv_depth_1, (kernel_size, kernel_size),
                            padding='same',
@@ -63,10 +65,8 @@ def create_model(height,
     bn = BatchNormalization()(flat)
     hidden = Dense(hidden_size, activation='relu',
                    kernel_regularizer= l2(reg))(bn)
-
     drop_3 = Dropout(drop_prob_2)(hidden)
     out = Dense(num_classes, activation='softmax')(drop_3)
-
 
     model = Model(inputs=inp, outputs=out)
 
