@@ -1,3 +1,8 @@
+# model based on this tutorial on CNNs in Keras:
+# https://cambridgespark.com/content/tutorials/convolutional-neural-networks-with-keras/index.html,
+
+as well as
+
 import sys
 from keras.models import Model
 from keras.layers import Input, Convolution2D, MaxPooling2D
